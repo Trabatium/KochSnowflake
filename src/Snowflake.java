@@ -7,14 +7,14 @@ import static ch.unibas.informatik.jturtle.TurtleCommands.*;
 
 public class Snowflake {
 
+    static final double angle = 60;
+    
     /**
      * Zeichnet die Kochkurve auf dem aktuellen Rekursionslevel.
      * Das Argument length gibt an wie lange ein Liniensegment sein soll
      */
-
     static void drawKochCurve(int depth, double length) {
-        double angle = 60;
-        
+         
         if (depth > 0) {
             depth--;
             length /= 3;
@@ -39,7 +39,6 @@ public class Snowflake {
             turnRight(120);
         }
     }
-
 
     /**
      * Speichert das gezeichnete Bild.
