@@ -12,8 +12,9 @@ public class Snowflake {
      * Das Argument length gibt an wie lange ein Liniensegment sein soll
      */
 
-    static void drawKochCurve(int depth, double length, Turtle t) {
-
+    static void drawKochCurve(int depth, double length) {
+        double angle = 60;
+        
         if (depth > 0) {
             depth--;
             length /= 3;
@@ -27,7 +28,7 @@ public class Snowflake {
         } else {
             forward(length);
         }
-
+    }
 
     /**
      * Zeichnet eine Scheeflocke, durch mehrmaliges zeichnen der Kochkurve
