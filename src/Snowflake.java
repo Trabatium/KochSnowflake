@@ -64,7 +64,7 @@ public class Snowflake {
             clear();
             home();
             turnRight(90);
-            drawKochCurve(depth, 60, heinrich);
+            drawKochCurve(depth, 60);
             saveImage("koch-" +depth +".png");
         }
 
