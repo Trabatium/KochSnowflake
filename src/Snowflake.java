@@ -14,7 +14,6 @@ public class Snowflake {
 
     static void drawKochCurve(int depth, double length, Turtle t) {
 
-        // TODO Ihre Implementation
         if (depth > 0) {
             depth--;
             length /= 3;
