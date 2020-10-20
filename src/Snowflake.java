@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-//import static ch.unibas.informatik.jturtle.TurtleCommands.*;
+import static ch.unibas.informatik.jturtle.TurtleCommands.*;
 
 public class Snowflake {
 
@@ -12,38 +12,39 @@ public class Snowflake {
      * Das Argument length gibt an wie lange ein Liniensegment sein soll
      */
 
-
     static void drawKochCurve(int depth, double length, Turtle t) {
 
         // TODO Ihre Implementation
-
-        if (depth == 0) {
-            t.forward(length);
+        if (depth > 0) {
+            depth--;
+            length /= 3;
+            drawKochCurve(depth, length);
+            turnLeft(angle);
+            drawKochCurve(depth, length);
+            turnRight(angle * 2);
+            drawKochCurve(depth, length);
+            turnLeft(angle);
+            drawKochCurve(depth, length);
         } else {
-            drawKochCurve(depth - 1, length / 3,t);
-            t.left(60);
-            drawKochCurve(depth - 1, length / 3,t);
-            t.right(120);
-            drawKochCurve(depth - 1, length / 3,t);
-            t.left(60);
-            drawKochCurve(depth - 1, length / 3,t);
+            forward(length);
         }
-    }
 
 
     /**
      * Zeichnet eine Scheeflocke, durch mehrmaliges zeichnen der Kochkurve
      */
     static void drawSnowflake(int depth, int length) {
-        // TODO Ihre Implemmentation
-
+        for (int i = 0; i < 3; i++) {
+            drawKochCurve(depth,length);
+            turnRight(120);
+        }
     }
 
 
     /**
      * Speichert das gezeichnete Bild.
      */
-/*    static void saveImage(String filename) {
+    static void saveImage(String filename) {
         BufferedImage image = drawing();
 
         try {
@@ -52,28 +53,27 @@ public class Snowflake {
             System.out.println(e.getMessage());
         }
 
-      }*/
+      }
 
     /**
      * Testprogramm um Zeichnung mit verschiedenen Rekursionstiefen zu generieren.
      */
     public static void main(String[] args) {
-        
-        Turtle heinrich = new Turtle();
-        heinrich.speed(0);
 
         for (int depth = 1; depth < 4; depth++) {
-            //clear();
-            //home();
+            clear();
+            home();
+            turnRight(90);
             drawKochCurve(depth, 60, heinrich);
-            //saveImage("koch-" +depth +".png");
+            saveImage("koch-" +depth +".png");
         }
 
         for (int depth = 1; depth < 4; depth++) {
-            //clear();
-            //home();
+            clear();
+            home();
+            turnRight(90);
             drawSnowflake(depth, 60);
-            //saveImage("snowflake-" +depth +".png");
+            saveImage("snowflake-" +depth +".png");
         }
     }
 }
